@@ -1,7 +1,7 @@
 {
 	"_version": "1.8.0",
 	"sap.app": {
-		"id": "com/delaware/pvp/trac2019",
+		"id": "com.delaware.pvp.trac2019",
 		"type": "application",
 		"i18n": "i18n/i18n.properties",
 		"applicationVersion": {
@@ -39,11 +39,14 @@
 			"tablet": true,
 			"phone": true
 		},
-		"supportedThemes": ["sap_hcb", "sap_belize"]
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_belize"
+		]
 	},
 	"sap.ui5": {
 		"rootView": {
-			"viewName": "com/delaware/pvp/trac2019.view.App",
+			"viewName": "com.delaware.pvp.trac2019.view.App",
 			"type": "XML"
 		},
 		"dependencies": {
@@ -63,7 +66,7 @@
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
-					"bundleName": "com/delaware/pvp/trac2019.i18n.i18n"
+					"bundleName": "com.delaware.pvp.trac2019.i18n.i18n"
 				}
 			},
 			"appView": {
@@ -73,23 +76,30 @@
 			}
 		},
 		"resources": {
-			"css": [{
-				"uri": "css/style.css"
-			}]
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
 		},
 		"routing": {
 			"config": {
 				"routerClass": "sap.f.routing.Router",
 				"viewType": "XML",
 				"async": true,
-				"viewPath": "com/delaware/pvp/trac2019.view",
+				"viewPath": "com.delaware.pvp.trac2019.view",
 				"controlId": "idAppControl"
 			},
-			"routes": [
-			
-			],
+			"routes": [],
 			"targets": {
-				
+				"Master": {
+					"viewType": "XML",
+					"viewName": "Master"
+				},
+				"Detail": {
+					"viewType": "XML",
+					"viewName": "Detail"
+				}
 			}
 		}
 	}

@@ -5,7 +5,7 @@ sap.ui.define([
 	], function (Controller, History, MessageBox) {
 		"use strict";
 
-		return Controller.extend("com/delaware/pvp/trac2019.controller.BaseController", {
+		return Controller.extend("com.delaware.pvp.trac2019.controller.BaseController", {
 			/**
 			 * Convenience method for accessing the router in every controller of the application.
 			 * @public

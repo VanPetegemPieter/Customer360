@@ -5,7 +5,7 @@ sap.ui.define([
 ], function (UIComponent, Device, models) {
 	"use strict";
 
-	return UIComponent.extend("com/delaware/pvp/trac2019.Component", {
+	return UIComponent.extend("com.delaware.pvp.trac2019.Component", {
 
 		metadata: {
 			manifest: "json"
