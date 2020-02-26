@@ -2,8 +2,28 @@
 	xmlns:html="http://www.w3.org/1999/xhtml">
 	<App>
 		<pages>
-			<Page title="Title">
-				<content></content>
+			<Page title="{i18n>Customers}">
+				<content>
+				<List 
+					id="idCustomerList"
+						items="{/ZV_ZVT19_CUSTM_PVP}">
+					<headerToolbar>
+						<Toolbar>
+							<ToolbarSpacer/>
+							<SearchField width="50%" search="onFilterCustomers"/> 
+						</Toolbar>
+					</headerToolbar>
+							<ObjectListItem
+								title="{name}"
+								type ="Navigation"
+								press="onCustomerPress">
+								<attributes>
+									<ObjectAttribute title="{i18n>CityText}" text="{city}"/>
+									<ObjectAttribute title="{i18n>CountryText}" text="{country}"/>
+								</attributes>
+							</ObjectListItem>
+				</List>
+				</content>
 			</Page>
 		</pages>
 	</App>

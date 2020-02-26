@@ -2,8 +2,52 @@
 	xmlns:html="http://www.w3.org/1999/xhtml">
 	<App>
 		<pages>
-			<Page title="Title">
-				<content></content>
+			<Page title="{i18n>Common.SalesOrders}">
+				<content>
+					<ObjectHeader
+						title="{selectedCustomerModel>/name}"
+						icon="sap-icon://customer">
+						<attributes>
+							<ObjectAttribute text="{selectedCustomerModel>/city}"/>
+							<ObjectAttribute text="{selectedCustomerModel>/country}"/>
+							<ObjectAttribute text="{selectedCustomerModel>/CustomerNumber}"/>
+						</attributes>
+					</ObjectHeader>
+					<Table
+						items="{ordersModel>/}"
+						mode="SingleSelectMaster"
+						selectionChange="onOrderPress">
+						<headerToolbar>
+							<Toolbar>
+								<Title text="{i18n>Common.SalesOrders}"/>
+							</Toolbar>
+						</headerToolbar>
+						<columns>
+							<Column>
+								<Text text="{i18n>Detail.Table.SalesOrderNumber}"/>
+							</Column>
+							<Column>
+								<Text text="{i18n>Detail.Table.PONumber}"/>
+							</Column>
+							<Column>
+								<Text text="{i18n>Detail.Table.DeliveryDate}"/>
+							</Column>
+							<Column>
+								<Text text="{i18n>Detail.Table.Value}"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<ObjectIdentifier title="{ordersModel>ID}"/>
+									<Text text="{ordersModel>OrderNumber}"/>
+									<Text text="{path: 'ordersModel>RequestedDeliveryDate', formatter: '.formatter.formatDate'}"/>
+									<Text text="{ordersModel>NetValue}"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
 			</Page>
 		</pages>
 	</App>

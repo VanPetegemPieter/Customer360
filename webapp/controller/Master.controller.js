@@ -1,6 +1,8 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
-], function (Controller) {
+	"com/delaware/pvp/trac2019/controller/BaseController",
+	"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator"
+], function (Controller, Filter, FilterOperator) {
 	"use strict";
 
 	return Controller.extend("com.delaware.pvp.trac2019.controller.Master", {
@@ -13,6 +15,30 @@ sap.ui.define([
 		onInit: function () {
 
 		},
+		
+		onCustomerPress: function(oEvent){
+			var oSelectedCustomer = oEvent.getSource().getBindingContext().getObject();
+			this.getModel("selectedCustomerModel").setData(oSelectedCustomer);
+			this.getRouter().navTo("Detail", {
+				customerID: oSelectedCustomer.CustomerNumber
+			});
+			this.getModel("appView").setProperty("/layout", "TwoColumnsMidExpanded");
+		},
+		
+		onFilterCustomers: function(oEvent){
+			//build filter array
+			var aFilters = [];
+			var sQuery = oEvent.getSource().getValue();
+			if(sQuery && sQuery.length>0){
+				aFilters.push(new Filter("name", FilterOperator.Contains, sQuery));
+				
+			}
+			
+			//update list binding
+			var oList = this.getView().byId("idCustomerList");
+			var oBinding = oList.getBinding("items");
+			oBinding.filter(aFilters, "name");
+		}
 
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
@@ -28,9 +54,9 @@ sap.ui.define([
 		 * This hook is the same one that SAPUI5 controls get after being rendered.
 		 * @memberOf com.delaware.pvp.trac2019.view.Master
 		 */
-		//	onAfterRendering: function() {
+		//onAfterRendering: function() {
 		//
-		//	},
+		//},
 
 		/**
 		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.

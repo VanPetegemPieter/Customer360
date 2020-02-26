@@ -1,0 +1,36 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='ERP')/$value"><edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='ERP')/$value"><edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='ERP')/$value"><edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='ERP')/$value"><edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='ERP')/$value"><edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/></edmx:Reference>
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZV_ZVT19_ORDERS_PVP_CDS" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="ZV_ZVT19_ORDERS_PVPType" sap:label="Order list" sap:content-version="1">
+				<Key><PropertyRef Name="OrderNumber"/></Key><Property Name="OrderNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Po number"
+					sap:quickinfo="Sales Document"/><Property Name="Id" Type="Edm.String" MaxLength="20" sap:label="Id" sap:quickinfo="Customer Reference"/><Property Name="RequestedDeliveryDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Requested Delivery Date"/><Property Name="NetValue" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="Currency" sap:label="Net Value"
+					sap:quickinfo="Net Value of the Sales Order in Document Currency"/><Property Name="Currency" Type="Edm.String" MaxLength="5" sap:label="Currency" sap:quickinfo="SD document currency"
+					sap:semantics="currency-code"/><Property Name="Customer" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Customer" sap:quickinfo="Sold-To Party"/></EntityType>
+			<EntityContainer Name="ZV_ZVT19_ORDERS_PVP_CDS_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true"
+				sap:supported-formats="atom json xlsx"><EntitySet Name="ZV_ZVT19_ORDERS_PVP" EntityType="ZV_ZVT19_ORDERS_PVP_CDS.ZV_ZVT19_ORDERS_PVPType" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:content-version="1"/></EntityContainer>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZV_ZVT19_ORDERS_PVP_CDS.ZV_ZVT19_ORDERS_PVP_CDS_Entities">
+				<Annotation Term="Aggregation.ApplySupported">
+					<Record>
+						<PropertyValue Property="Transformations">
+							<Collection>
+								<String>aggregate</String>
+								<String>groupby</String>
+								<String>filter</String>
+							</Collection>
+						</PropertyValue><PropertyValue Property="Rollup" EnumMember="None"/></Record>
+				</Annotation>
+			</Annotations><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZV_ZVT19_ORDERS_PVP_CDS/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZV_ZVT19_ORDERS_PVP_CDS/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

@@ -1,0 +1,43 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="com.delaware.pvp.trac2019.controller.OrderLines" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page title="{i18n>Common.SalesOrderItems}">
+				<content>
+					<ObjectHeader title="{selectedSalesDocModel>/ID}">
+						<attributes>
+							<ObjectAttribute text="{selectedSalesDocModel>/NetValue} {selectedSalesDocModel>/Currency}"/>
+						</attributes>
+					</ObjectHeader>
+					<Table items="{orderItemsModel>/}">
+						<headerToolbar>
+							<Toolbar>
+								<Title text="{i18n>Common.SalesOrderItems}"/>
+							</Toolbar>
+						</headerToolbar>
+						<columns>
+							<Column>
+								<Text text="{i18n>DetailDetail.Table.Item}"/>
+							</Column>
+							<Column>
+								<Text text="{i18n>DetailDetail.Table.Quantity}"/>
+							</Column>
+							<Column>
+								<Text text="{i18n>DetailDetail.Table.UnitPrice}"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<ObjectIdentifier title="{orderItemsModel>MaterialNumber}"/>
+									<Text text="{orderItemsModel>OrderQuantity}"/>
+									<Text text="{orderItemsModel>TargetUOM}"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

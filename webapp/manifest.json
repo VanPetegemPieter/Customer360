@@ -21,6 +21,20 @@
 					"odataVersion": "2.0",
 					"localUri": "localService/metadata.xml"
 				}
+			},
+			"ZV_ZVT19_CUSTM_PVP_CDS": {
+				"uri": "/sap/opu/odata/sap/ZV_ZVT19_CUSTM_PVP_CDS/",
+				"type": "OData",
+				"settings": {
+					"localUri": "localService/ZV_ZVT19_CUSTM_PVP_CDS/metadata.xml"
+				}
+			},
+			"ZV_ZVT19_ORDERS_PVP_CDS": {
+				"uri": "/sap/opu/odata/sap/ZV_ZVT19_ORDERS_PVP_CDS/",
+				"type": "OData",
+				"settings": {
+					"localUri": "localService/ZV_ZVT19_ORDERS_PVP_CDS/metadata.xml"
+				}
 			}
 		}
 	},
@@ -39,10 +53,7 @@
 			"tablet": true,
 			"phone": true
 		},
-		"supportedThemes": [
-			"sap_hcb",
-			"sap_belize"
-		]
+		"supportedThemes": ["sap_hcb", "sap_belize"]
 	},
 	"sap.ui5": {
 		"rootView": {
@@ -73,14 +84,49 @@
 				"type": "sap.ui.model.json.JSONModel",
 				"settings": {},
 				"preload": false
+			},
+			"": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request",
+					"useBatch": true
+				},
+				"dataSource": "ZV_ZVT19_CUSTM_PVP_CDS",
+				"preload": true
+			},
+			"orders": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request",
+					"useBatch": true
+				},
+				"dataSource": "ZV_ZVT19_ORDERS_PVP_CDS",
+				"preload": true
+			},
+			"ordersModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"preload": false
+			},
+			"selectedCustomerModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"preload": false
+			},
+			"selectedSalesDocModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"preload": false
 			}
 		},
 		"resources": {
-			"css": [
-				{
-					"uri": "css/style.css"
-				}
-			]
+			"css": [{
+				"uri": "css/style.css"
+			}]
 		},
 		"routing": {
 			"config": {
@@ -90,15 +136,34 @@
 				"viewPath": "com.delaware.pvp.trac2019.view",
 				"controlId": "idAppControl"
 			},
-			"routes": [],
+			"routes": [{
+				"name": "Master",
+				"pattern": "",
+				"target": "Master"
+			}, {
+				"name": "Detail",
+				"pattern": "customer/{customerID}",
+				"target": ["Master", "Detail"]
+			}, {
+				"name": "OrderLines",
+				"pattern": "customer/{customerID}/order/orderNumber",
+				"target": ["Master", "Detail", "OrderLines"]
+			}],
 			"targets": {
 				"Master": {
 					"viewType": "XML",
-					"viewName": "Master"
+					"viewName": "Master",
+					"controlAggregation": "beginColumnPages"
 				},
 				"Detail": {
 					"viewType": "XML",
-					"viewName": "Detail"
+					"viewName": "Detail",
+					"controlAggregation": "midColumnPages"
+				},
+				"OrderLines": {
+					"viewType": "XML",
+					"viewName": "OrderLines",
+					"controlAggregation": "endColumnPages"
 				}
 			}
 		}
